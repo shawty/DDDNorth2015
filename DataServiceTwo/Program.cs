@@ -1,15 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Topshelf;
 
-namespace DataServiceTwo
+namespace DataServiceOne
 {
   class Program
   {
-    static void Main(string[] args)
+    static int Main()
     {
+      var exitCode = HostFactory.Run(host =>
+      {
+        host.Service<ServiceKernel>(service =>
+        {
+          service.ConstructUsing(() => new ServiceKernel());
+          service.WhenStarted(kernel => kernel.StartService());
+          service.WhenStopped(kernel => kernel.StopService());
+        });
+        host.SetDisplayName("Demo Data Service Two");
+        host.SetServiceName("DataServiceTwo");
+        host.SetDescription("Demonstration .NET service using Nancy/Owin & Topshelf for Microservices talk at DDDNorth 2015.");
+        host.RunAsNetworkService();
+        host.StartAutomaticallyDelayed();
+      });
+
+      return (int)exitCode;
+
     }
+
   }
 }
