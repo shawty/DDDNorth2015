@@ -70,9 +70,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Modules\RootRoutes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceKernel.cs" />
+    <Compile Include="Services\EmployeeData.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
